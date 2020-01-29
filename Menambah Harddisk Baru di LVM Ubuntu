@@ -1,0 +1,55 @@
+Meningkatkan Kapasitas LVM dengan Menambahkan Harddisk Baru.
+
+Tujuan pembuatan partisi LVM (Logical Volume Manager) adalah :
+- Mudah untuk merubah ukuran partisi (memperbesar atau mengurangi)
+- Menggabungkan beberapa partisi menjadi satu untuk memperoleh space yang lebih besar.
+- Mudah dalam hal management partisi hard disk
+
+STEP BY STEP :
+
+1. Pasang Harddisk baru
+
+2. Cek harddisk baru menggunakan perintah "sudo fdisk -l". Misal harddisk yang baru sudah terdeteksi sebagai /dev/sdb.
+
+3. Format Harddisk yang baru menjadi LVM, dengan perintah
+   a) ketik perintah "sudo fdisk /dev/sdb"
+   b) ketik perintah n, untuk membuat partisi baru.
+   c) ketik perintah p, pada opsi Partition Type untuk membuat tipe partisi Primary.
+   d) ketik perintah 1, pada opsi Partition Number untuk membuat jumlah partisi 1 saja.
+   e) ketik perintah t, untuk menentukan tipe partisi.
+   f) ketik perintah 8e, untuk memilih tipe partisi Linux LVM.
+   g) ketik perintah w, untuk memulai pemformatan partisi & menutup program.
+
+4. Cek kembali apakah harddisk sdb telah siap digunakan dengan format lvm.
+   Ketik perintah "parted /dev/sdb print"
+   
+5. Membuat Physical volume Di /dev/sdb
+   Ketik perintah "pvcreate /dev/sdb1"
+
+6. Lihat Nama VG / Volume Group yang sudah tersedia.
+   Ketik perintah "vgscan", misal disini nama VG LVM nya adalah (ubuntu-vg)
+
+7. Menambahkan Volume Baru ke dalam grup Volume Group yang sudah ada.
+   Ketik perintah "vgextend nama-vg /dev/sdb1", misalnya vgextends ubuntu-vg /dev/sdb1.
+
+8. Untuk cek hasilnya bisa menggunakan beberapa perintah berikut.	
+   vgdisplay
+   vgs
+   pvs
+   pvscan
+   pvdisplay
+
+9. Selesai.
+
+==========
+
+Catatan : Untuk menghapus harddisk atau disk SDB menggunakan perintah berikut, "pvremove /dev/sdb1"
+
+Terima kasih.
+
+Referensi : 
+- https://gemaroprek.com/menambah-atau-menghapus-partisi-lvm-pada-linux/
+- https://www.vavai.com/berkenalan-dengan-lvm/
+- https://acenk90.wordpress.com/2013/12/13/konfigurasi-partisi-lvm-logical-volume-manager-melalui-terminal-linux/
+- https://help.ubuntu.com/lts/serverguide/advanced-installation.html
+- http://www.mozunote.com/2018/06/cara-menambah-kapasitas-harddisk-dalam.html
