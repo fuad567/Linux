@@ -23,14 +23,14 @@ STEP BY STEP :
 4. Cek kembali apakah harddisk sdb telah siap digunakan dengan format lvm.
    Ketik perintah "parted /dev/sdb print"
    
-5. Membuat Physical volume Di /dev/sdb
+5. Membuat Physical Volume di /dev/sdb
    Ketik perintah "pvcreate /dev/sdb1"
 
 6. Lihat Nama VG / Volume Group yang sudah tersedia.
    Ketik perintah "vgscan", misal disini nama VG LVM nya adalah (ubuntu-vg)
 
 7. Menambahkan Volume Baru ke dalam grup Volume Group yang sudah ada.
-   Ketik perintah "vgextend nama-vg /dev/sdb1", misalnya vgextends ubuntu-vg /dev/sdb1.
+   Ketik perintah "vgextend nama-vg /dev/sdb1", misalnya vgextend ubuntu-vg /dev/sdb1.
 
 8. Untuk cek hasilnya bisa menggunakan beberapa perintah berikut.	
    vgdisplay
