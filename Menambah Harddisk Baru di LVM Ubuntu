@@ -43,7 +43,11 @@ STEP BY STEP :
 
 ==========
 
-Catatan : Untuk menghapus harddisk atau disk SDB menggunakan perintah berikut, "pvremove /dev/sdb1"
+Catatan : 
+
+Untuk menghapus harddisk atau disk SDB menggunakan perintah berikut
+a. vgreduce ubuntu-vg /dev/sdb1 - (Untuk menghapus /dev/sdb1 dari Volume Group LVM).
+b. pvremove /dev/sdb1 - (Untuk menghapus label lvm pada sdb1).
 
 Terima kasih.
 
